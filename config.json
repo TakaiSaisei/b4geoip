@@ -952,6 +952,10 @@
         "outputDir": "./output",
         "outputName": "geoip.dat"
       }
+    },
+    {
+      "type": "singboxSRS",
+      "action": "output"
     }
   ]
 }

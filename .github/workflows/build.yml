@@ -49,20 +49,16 @@ jobs:
           go build -C geoip ./
           ./geoip/geoip convert -c ./config.json
 
-      - name: Generate sha256 checksum for dat files
+      - name: Prepare sing-box release assets
         run: |
-          cd ./output || exit 1
-          for name in $(ls *.dat); do
-            sha256sum ${name} > ./${name}.sha256sum
+          mkdir -p ./release
+          jq -r '.input[] | select(.args.name != null) | .args.name' ./config.json | sort -u | while read -r name; do
+            cp "./output/srs/${name}.srs" "./release/${name}.srs"
           done
-
-      - name: Remove some files to avoid publishing to GitHub release
-        run: |
-          rm -rf ./output/*.{gz,zip}
-          rm -rf ./output/GeoLite2-*.csv
-          rm -rf ./output/GeoLite2-*.mmdb
-          rm -rf ./output/GeoLite2-*.sha256sum
-          rm -rf ./output/{clash,dat,mrs,nginx,srs,surge,text}
+          cd ./release || exit 1
+          for name in *.srs; do
+            sha256sum "${name}" > "./${name}.sha256sum"
+          done
 
       - name: Upload files to GitHub release
         uses: svenstaro/upload-release-action@v2
@@ -70,6 +66,6 @@ jobs:
           overwrite: true
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file_glob: true
-          file: ./output/*
+          file: ./release/*
           release_name: ${{ env.RELEASE_NAME }}
           tag: ${{ env.TAG_NAME }}
