@@ -66,6 +66,18 @@ jobs:
             --output ./release/geosite-adguard.srs \
             ./tmp/geosite/adguard.txt
 
+      - name: Remove existing latest release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh release view "${TAG_NAME}" >/dev/null 2>&1; then
+            gh release delete "${TAG_NAME}" --yes
+          fi
+
+          if gh api "/repos/${GITHUB_REPOSITORY}/git/ref/tags/${TAG_NAME}" >/dev/null 2>&1; then
+            gh api --method DELETE "/repos/${GITHUB_REPOSITORY}/git/refs/tags/${TAG_NAME}"
+          fi
+
       - name: Upload files to GitHub release
         uses: svenstaro/upload-release-action@v2
         with:
