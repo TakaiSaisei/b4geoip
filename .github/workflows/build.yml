@@ -19,8 +19,8 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     env:
-      TAG_NAME: ""
-      RELEASE_NAME: ""
+      TAG_NAME: latest
+      RELEASE_NAME: latest
     steps:
       - name: Checkout codebase
         uses: actions/checkout@v6
@@ -38,12 +38,6 @@ jobs:
         with:
           go-version-file: ./geoip/go.mod
 
-      - name: Set variables
-        run: |
-          echo "TAG_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
-          echo "RELEASE_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
-        shell: bash
-
       - name: Build geoip files
         run: |
           go build -C geoip ./
@@ -54,10 +48,6 @@ jobs:
           mkdir -p ./release
           jq -r '.input[] | select(.args.name != null) | .args.name' ./config.json | sort -u | while read -r name; do
             cp "./output/srs/${name}.srs" "./release/${name}.srs"
-          done
-          cd ./release || exit 1
-          for name in *.srs; do
-            sha256sum "${name}" > "./${name}.sha256sum"
           done
 
       - name: Upload files to GitHub release
