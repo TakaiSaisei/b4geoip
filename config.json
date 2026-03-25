@@ -1,120 +1,25 @@
 {
-  "input": [
-    {
-      "type": "json",
-      "action": "add",
-      "args": {
-        "name": "valve",
-        "uri": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=32590",
-        "jsonPath": [
-          "data.prefixes.#.prefix"
-        ]
-      }
-    },
-    {
-      "type": "json",
-      "action": "add",
-      "args": {
-        "name": "sony",
-        "uri": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=33353",
-        "jsonPath": [
-          "data.prefixes.#.prefix"
-        ]
-      }
-    },
-    {
-      "type": "json",
-      "action": "add",
-      "args": {
-        "name": "sony",
-        "uri": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=25562",
-        "jsonPath": [
-          "data.prefixes.#.prefix"
-        ]
-      }
-    },
-    {
-      "type": "json",
-      "action": "add",
-      "args": {
-        "name": "sony",
-        "uri": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=11795",
-        "jsonPath": [
-          "data.prefixes.#.prefix"
-        ]
-      }
-    },
-    {
-      "type": "json",
-      "action": "add",
-      "args": {
-        "name": "sony",
-        "uri": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=139808",
-        "jsonPath": [
-          "data.prefixes.#.prefix"
-        ]
-      }
-    },
-    {
-      "type": "json",
-      "action": "add",
-      "args": {
-        "name": "sony",
-        "uri": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=2527",
-        "jsonPath": [
-          "data.prefixes.#.prefix"
-        ]
-      }
-    },
-    {
-      "type": "json",
-      "action": "add",
-      "args": {
-        "name": "sony",
-        "uri": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=397077",
-        "jsonPath": [
-          "data.prefixes.#.prefix"
-        ]
-      }
-    },
-    {
-      "type": "json",
-      "action": "add",
-      "args": {
-        "name": "sony",
-        "uri": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=13720",
-        "jsonPath": [
-          "data.prefixes.#.prefix"
-        ]
-      }
-    },
-    {
-      "type": "json",
-      "action": "add",
-      "args": {
-        "name": "blizzard",
-        "uri": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=57976",
-        "jsonPath": [
-          "data.prefixes.#.prefix"
-        ]
-      }
-    },
-    {
-      "type": "json",
-      "action": "add",
-      "args": {
-        "name": "epicgames",
-        "uri": "https://stat.ripe.net/data/announced-prefixes/data.json?resource=10747",
-        "jsonPath": [
-          "data.prefixes.#.prefix"
-        ]
-      }
-    }
-  ],
-  "output": [
-    {
-      "type": "singboxSRS",
-      "action": "output"
-    }
-  ]
+  "geoip": {
+    "blizzard": [
+      "https://stat.ripe.net/data/announced-prefixes/data.json?resource=57976"
+    ],
+    "epicgames": [
+      "https://stat.ripe.net/data/announced-prefixes/data.json?resource=10747"
+    ],
+    "sony": [
+      "https://stat.ripe.net/data/announced-prefixes/data.json?resource=33353",
+      "https://stat.ripe.net/data/announced-prefixes/data.json?resource=25562",
+      "https://stat.ripe.net/data/announced-prefixes/data.json?resource=11795",
+      "https://stat.ripe.net/data/announced-prefixes/data.json?resource=139808",
+      "https://stat.ripe.net/data/announced-prefixes/data.json?resource=2527",
+      "https://stat.ripe.net/data/announced-prefixes/data.json?resource=397077",
+      "https://stat.ripe.net/data/announced-prefixes/data.json?resource=13720"
+    ],
+    "valve": [
+      "https://stat.ripe.net/data/announced-prefixes/data.json?resource=32590"
+    ]
+  },
+  "geosite": {
+    "adguard": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt"
+  }
 }

@@ -27,28 +27,44 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Checkout runetfreedom/geoip
-        uses: actions/checkout@v6
-        with:
-          repository: runetfreedom/geoip
-          path: geoip
-
-      - name: Set up Go
-        uses: actions/setup-go@v6
-        with:
-          go-version-file: ./geoip/go.mod
-
-      - name: Build geoip files
+      - name: Install sing-box
         run: |
-          go build -C geoip ./
-          ./geoip/geoip convert -c ./config.json
+          mkdir -p ./tmp/sing-box
+          release_json="$(curl -fsSL https://api.github.com/repos/SagerNet/sing-box/releases/latest)"
+          asset_url="$(printf '%s' "${release_json}" | jq -r '.assets[] | select(.name | test("linux-amd64[.]tar[.]gz$")) | .browser_download_url' | head -n 1)"
+          curl -fsSL "${asset_url}" -o ./tmp/sing-box/sing-box.tar.gz
+          tar -xzf ./tmp/sing-box/sing-box.tar.gz -C ./tmp/sing-box --strip-components=1
 
-      - name: Prepare sing-box release assets
+      - name: Build geoip rule-sets
         run: |
-          mkdir -p ./release
-          jq -r '.input[] | select(.args.name != null) | .args.name' ./config.json | sort -u | while read -r name; do
-            cp "./output/srs/${name}.srs" "./release/${name}.srs"
+          mkdir -p ./tmp/geoip ./release
+          jq -r '.geoip | to_entries[] | @base64' ./config.json | while read -r entry; do
+            item="$(printf '%s' "${entry}" | base64 --decode)"
+            name="$(printf '%s' "${item}" | jq -r '.key')"
+            prefixes_file="./tmp/geoip/${name}.txt"
+            source_file="./tmp/geoip/${name}.json"
+
+            : > "${prefixes_file}"
+            printf '%s' "${item}" | jq -r '.value[]' | while read -r uri; do
+              curl -fsSL "${uri}" | jq -r '.data.prefixes[].prefix'
+            done | sort -u > "${prefixes_file}"
+
+            jq -Rsc '{version: 3, rules: [{ip_cidr: (split("\n") | map(select(length > 0)))}]}' \
+              "${prefixes_file}" > "${source_file}"
+
+            ./tmp/sing-box/sing-box rule-set compile \
+              --output "./release/geoip-${name}.srs" \
+              "${source_file}"
           done
+
+      - name: Build AdGuard rule-set
+        run: |
+          mkdir -p ./tmp/geosite ./release
+          curl -fsSL "$(jq -r '.geosite.adguard' ./config.json)" -o ./tmp/geosite/adguard.txt
+          ./tmp/sing-box/sing-box rule-set convert \
+            --type adguard \
+            --output ./release/geosite-adguard.srs \
+            ./tmp/geosite/adguard.txt
 
       - name: Upload files to GitHub release
         uses: svenstaro/upload-release-action@v2
