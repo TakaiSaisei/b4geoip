@@ -1,5 +1,10 @@
 {
   "geoip": {
+    "apple": [
+      "https://stat.ripe.net/data/announced-prefixes/data.json?resource=6185",
+      "https://stat.ripe.net/data/announced-prefixes/data.json?resource=714",
+      "https://stat.ripe.net/data/announced-prefixes/data.json?resource=216183"
+    ],
     "blizzard": [
       "https://stat.ripe.net/data/announced-prefixes/data.json?resource=57976"
     ],
