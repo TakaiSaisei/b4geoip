@@ -22,6 +22,9 @@
     ],
     "valve": [
       "https://stat.ripe.net/data/announced-prefixes/data.json?resource=32590"
+    ],
+    "google": [
+      "https://stat.ripe.net/data/announced-prefixes/data.json?resource=15169"
     ]
   },
   "geosite": {
