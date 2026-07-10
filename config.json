@@ -6,7 +6,8 @@
       "https://stat.ripe.net/data/announced-prefixes/data.json?resource=216183"
     ],
     "blizzard": [
-      "https://stat.ripe.net/data/announced-prefixes/data.json?resource=57976"
+      "https://stat.ripe.net/data/announced-prefixes/data.json?resource=57976",
+      "https://stat.ripe.net/data/announced-prefixes/data.json?resource=60229"
     ],
     "epicgames": [
       "https://stat.ripe.net/data/announced-prefixes/data.json?resource=10747"
