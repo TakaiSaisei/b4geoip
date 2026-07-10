@@ -1,4 +1,6 @@
 output/
+release/
+tmp/
 geolite2/
 vendor/
 geoip

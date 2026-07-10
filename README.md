@@ -1,18 +1,21 @@
 # b4geoip
 
-b4geoip публикует набор `sing-box` `.srs` файлов.
+b4geoip публикует v2ray/Xray файл `geoip.dat`.
 
-Доступные категории:
+Категории `geoip.dat` (собираются из префиксов RIPE):
 
-- geoip-blizzard
-- geoip-epicgames
-- geoip-sony
-- geoip-valve
-- geosite-adguard
+- `geoip:apple`
+- `geoip:blizzard`
+- `geoip:epicgames`
+- `geoip:sony`
+- `geoip:valve`
+- `geoip:google`
+- `geoip:ru` (импортируется из [v2fly/geoip](https://github.com/v2fly/geoip))
 
-Примеры прямых ссылок на последние версии (обновляются раз в день):
+Прямая ссылка на последнюю версию (обновляется раз в день):
 
 ```text
-https://github.com/TakaiSaisei/b4geoip/releases/latest/download/geoip-blizzard.srs
-https://github.com/TakaiSaisei/b4geoip/releases/latest/download/geosite-adguard.srs
+https://github.com/TakaiSaisei/b4geoip/releases/latest/download/geoip.dat
 ```
+
+Рядом с файлом публикуется `geoip.dat.sha256sum` с контрольной суммой.
