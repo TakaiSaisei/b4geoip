@@ -11,6 +11,7 @@ b4geoip публикует v2ray/Xray файл `geoip.dat`.
 - `geoip:valve`
 - `geoip:google`
 - `geoip:ru` (импортируется из [v2fly/geoip](https://github.com/v2fly/geoip))
+- `geoip:private` (приватные диапазоны RFC1918/RFC4193)
 
 Прямая ссылка на последнюю версию (обновляется раз в день):
 
