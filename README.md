@@ -9,9 +9,8 @@ b4geoip публикует v2ray/Xray файл `geoip.dat`.
 - `geoip:epicgames`
 - `geoip:sony`
 - `geoip:valve`
-- `geoip:google`
-- `geoip:ru` (импортируется из [v2fly/geoip](https://github.com/v2fly/geoip))
-- `geoip:private` (приватные диапазоны RFC1918/RFC4193)
+- `geoip:google` (импортируется из [Loyalsoldier/geoip](https://github.com/Loyalsoldier/geoip))
+- `geoip:ru` (импортируется из [Loyalsoldier/geoip](https://github.com/Loyalsoldier/geoip))
 
 Прямая ссылка на последнюю версию (обновляется раз в день):
 

@@ -23,15 +23,12 @@
     ],
     "valve": [
       "https://stat.ripe.net/data/announced-prefixes/data.json?resource=32590"
-    ],
-    "google": [
-      "https://stat.ripe.net/data/announced-prefixes/data.json?resource=15169"
     ]
   },
   "geoip_import": [
     {
-      "uri": "https://github.com/v2fly/geoip/releases/latest/download/geoip.dat",
-      "wantedList": ["ru"]
+      "uri": "https://github.com/Loyalsoldier/geoip/releases/latest/download/geoip.dat",
+      "wantedList": ["ru", "google"]
     }
   ]
 }

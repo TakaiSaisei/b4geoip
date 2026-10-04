@@ -48,8 +48,6 @@ jobs:
                 action: "add",
                 args: { uri: .uri, wantedList: .wantedList }
               }))
-              +
-              [{ type: "private", action: "add" }]
             ),
             output: [{
               type: "v2rayGeoIPDat",
