@@ -12,10 +12,11 @@ b4geoip публикует v2ray/Xray файл `geoip.dat`.
 - `geoip:google` (импортируется из [Loyalsoldier/geoip](https://github.com/Loyalsoldier/geoip))
 - `geoip:ru` (импортируется из [Loyalsoldier/geoip](https://github.com/Loyalsoldier/geoip))
 
-Прямая ссылка на последнюю версию (обновляется раз в день):
+Прямые ссылки на последнюю версию (обновляются раз в день):
 
 ```text
 https://github.com/TakaiSaisei/b4geoip/releases/latest/download/geoip.dat
+https://raw.githubusercontent.com/TakaiSaisei/b4geoip/release/geoip.dat
 ```
 
 Рядом с файлом публикуется `geoip.dat.sha256sum` с контрольной суммой.
